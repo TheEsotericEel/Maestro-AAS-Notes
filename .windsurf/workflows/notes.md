@@ -21,7 +21,7 @@ Use the `/notes <file_path> <raw_content>` slash command where:
    - Practical examples and exercises
    - Challenge problems
    - Review sections
-4. **Create the file** - Write the formatted content to the specified file path
+4. **Replace file content** - Write the formatted content to the specified file path (replacing existing content if file exists)
 5. **Auto-commit changes** - Commit the new content to Git
 
 ## Content Structure:
