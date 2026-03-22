@@ -1,0 +1,227 @@
+# Challenge: queues
+
+## 1. Introduction
+This challenge tests your understanding of queue concepts and FIFO behavior through the questions you already worked through.
+
+## 2. Queue Fundamentals
+### Question 1: Movie Theater Line
+**Scenario**: At a movie theater 🎬, people line up to buy tickets. The first person who gets in line should be served first.
+
+**Question**: What kind of behavior is this?
+
+**Options**:
+- A. LIFO – last person in line is served first
+- B. FIFO – first person in line is served first  
+- C. Random – anyone in line might be served next
+- D. No order – there is no line at all
+
+**Correct Answer**: B. FIFO – first person in line is served first
+
+**Explanation**: Movie theater lines follow FIFO behavior - the first person who arrives gets served first.
+
+### Question 2: Print Job Queue
+**Scenario**: A printer 🖨️ has a queue of 3 print jobs: Job A, then Job B, then Job C. The printer finishes Job A and removes it.
+
+**Question**: Which job will the printer work on next?
+
+**Options**:
+- A. Job A again
+- B. Job B
+- C. Job C
+- D. It picks a random job
+
+**Correct Answer**: B. Job B
+
+**Explanation**: In a FIFO queue, after Job A is removed, Job B becomes the first item and will be processed next.
+
+### Question 3: Ice Cream Truck Line
+**Scenario**: Ice cream truck line: Sam, Jordan, Alex. One person is served and leaves. Now the line is: Jordan, Alex.
+
+**Question**: Who was just served?
+
+**Options**:
+- A. Sam
+- B. Jordan
+- C. Alex
+- D. We can't tell
+
+**Correct Answer**: A. Sam
+
+**Explanation**: The person at the front (Sam) was served first in the FIFO queue.
+
+## 3. Python Queue Implementation
+### Question 4: List-Based Queue
+```python
+line = []
+line.append("A")
+line.append("B")
+line.append("C")
+served = line.pop(0)
+```
+
+**Question**: Who does `served` refer to?
+
+**Options**:
+- A. "A"
+- B. "B"
+- C. "C"
+- D. The list is empty
+
+**Correct Answer**: A. "A"
+
+**Explanation**: `append()` adds to back, `pop(0)` removes from front. "A" was added first and is at index 0.
+
+### Question 5: Queue State After Operations
+```python
+queue = []
+queue.append("Alice")
+queue.append("Bob")
+queue.append("Charlie")
+first_served = queue.pop(0)
+second_served = queue.pop(0)
+```
+
+**Question**: What is the final state of `queue`?
+
+**Options**:
+- A. `["Alice", "Bob", "Charlie"]`
+- B. `["Bob", "Charlie"]`
+- C. `["Charlie"]`
+- D. `[]`
+
+**Correct Answer**: C. `["Charlie"]`
+
+**Explanation**: After removing "Alice" and "Bob", only "Charlie" remains.
+
+### Question 6: Deque Queue
+```python
+from collections import deque
+line = deque()
+line.append("Tom")
+line.append("Jerry")
+line.append("Spike")
+first = line.popleft()
+second = line.popleft()
+```
+
+**Question**: What are the values of `first` and `second`?
+
+**Options**:
+- A. `first = "Tom"`, `second = "Jerry"`
+- B. `first = "Jerry"`, `second = "Spike"`
+- C. `first = "Spike"`, `second = "Tom"`
+- D. `first = "Tom"`, `second = "Spike"`
+
+**Correct Answer**: A. `first = "Tom"`, `second = "Jerry"`
+
+**Explanation**: `popleft()` removes from front in FIFO order.
+
+## 4. Advanced Concepts
+### Question 7: Queue vs Stack
+**Scenario**: Same operations applied to both queue and stack with items A, B, C.
+
+**Question**: What are the output orders?
+
+**Options**:
+- A. Queue: A, B | Stack: C, B
+- B. Queue: A, B | Stack: A, B
+- C. Queue: C, B | Stack: A, B
+- D. Queue: C, B | Stack: C, B
+
+**Correct Answer**: A. Queue: A, B | Stack: C, B
+
+**Explanation**: Queue preserves order (FIFO), stack reverses order (LIFO).
+
+### Question 8: Real-World Queue Identification
+**Question**: Which is NOT a real-world example of a queue?
+
+**Options**:
+- A. People waiting in line at a bank
+- B. Web browser's back button history
+- C. Print jobs waiting for a printer
+- D. Network packets waiting to be processed
+
+**Correct Answer**: B. Web browser's back button history
+
+**Explanation**: Browser back button follows LIFO (stack) behavior, not FIFO.
+
+### Question 9: Performance Considerations
+**Question**: Which implementation is most efficient for high-volume queues?
+
+**Options**:
+- A. Python list with `append()` and `pop(0)`
+- B. Python list with `insert(0, item)` and `pop()`
+- C. `collections.deque` with `append()` and `popleft()`
+- D. Custom linked list implementation
+
+**Correct Answer**: C. `collections.deque` with `append()` and `popleft()`
+
+**Explanation**: `deque` provides O(1) time for both enqueue and dequeue operations.
+
+## 5. Code Examples
+### Basic Queue Class
+```python
+class BasicQueue:
+    def __init__(self):
+        self.items = []
+    
+    def enqueue(self, item):
+        self.items.append(item)
+    
+    def dequeue(self):
+        if self.is_empty():
+            raise IndexError("Cannot dequeue from empty queue")
+        return self.items.pop(0)
+    
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("Cannot peek at empty queue")
+        return self.items[0]
+    
+    def is_empty(self):
+        return len(self.items) == 0
+```
+
+### Deque Queue
+```python
+from collections import deque
+
+class DequeQueue:
+    def __init__(self):
+        self.items = deque()
+    
+    def enqueue(self, item):
+        self.items.append(item)
+    
+    def dequeue(self):
+        if self.is_empty():
+            raise IndexError("Cannot dequeue from empty queue")
+        return self.items.popleft()
+    
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("Cannot peek at empty queue")
+        return self.items[0]
+    
+    def is_empty(self):
+        return len(self.items) == 0
+```
+
+## 6. Summary
+### Key Concepts Mastered
+- **FIFO Principle**: First-In, First-Out behavior
+- **Queue Operations**: Enqueue (add to back) and dequeue (remove from front)
+- **Python Implementations**: List-based and deque-based queues
+- **Performance**: Deque is superior to lists for queue operations
+
+### Mastery Checklist
+- ✅ Understand FIFO behavior and queue principles
+- ✅ Identify real-world queue scenarios
+- ✅ Implement basic queue operations with Python lists
+- ✅ Implement efficient queue operations with deque
+- ✅ Handle queue edge cases (empty, full, overflow)
+- ✅ Compare queue vs stack behavior
+- ✅ Apply queues to practical problems
+- ✅ Choose appropriate queue implementations
+
+You've mastered the core queue concepts and are ready for more advanced data structures!

@@ -1,0 +1,19 @@
+# String membership with 'in' in conditions
+
+Study Guide: String Membership with \`in\` / \`not in\` and if/elif/else \[web:1\]
+
+1\. Big idea \- This lesson teaches how to check whether a smaller string appears inside a bigger string using \`in\` and \`not in\`. \[web:1\] \- You then plug those checks into \`if / elif / else\` to choose what your program should do. \[web:1\]
+
+2\. Basic string membership with \`in\` \- Pattern: small in big → True if small appears anywhere inside big, otherwise False. \[web:1\] \- Example you ran: message \= "Learning to code is fun". \[web:1\] \- "Learn" in message → True (it’s the start of "Learning"). \[web:1\] \- "code" in message → True (word appears). \[web:1\] \- "fun" in message → True (at the end). \[web:1\] \- "hard" in message → False (not present at all). \[web:1\]
+
+3\. Case sensitivity \- String membership is case-sensitive: uppercase and lowercase letters are different. \[web:1\] \- With text \= "Python": \[web:1\] \- "Py" in text → True (matches start exactly, capital P). \[web:1\] \- "py" in text → False (lowercase p does not appear exactly like that). \[web:1\] \- Takeaway: you must match the exact letters and casing for \`in\` to be True. \[web:1\]
+
+4\. Using \`not in\` \- \`X not in Y\` is the opposite of \`X in Y\`. \[web:1\] \- With message \= "I like pizza": \[web:1\] \- "pizza" in message → True. \[web:1\] \- "burger" in message → False. \[web:1\] \- "pizza" not in message → False (because pizza is there). \[web:1\] \- "burger" not in message → True (burger is not there). \[web:1\] \- English meaning: \- X in Y → “Y contains X”. \- X not in Y → “Y does not contain X”. \[web:1\]
+
+5\. if / else with \`in\` \- You first used a simple if with membership: \[web:1\] \- text \= "Today is a sunny day". \- if "sunny" in text: print("It is sunny\!") → prints the message because the condition is True. \[web:1\] \- Then you added else: \[web:1\] \- text \= "Today is a cloudy day". \- if "sunny" in text: ... else: print("It is NOT sunny."). \- Since "sunny" in text is False, Python skips the if block and runs the else. \[web:1\]
+
+6\. Adding \`elif\` (else if) \- Structure: if condition1: ... elif condition2: ... else: .... \[web:1\] \- Weather example with "rainy": \[web:1\] \- text \= "Today is a rainy day". \- if "sunny" in text: ... \- elif "rain" in text: print("Pack an umbrella"). \- else: ... \- "sunny" in text is False, "rain" in text is True, so it prints "Pack an umbrella". \[web:1\] \- Weather example with "sunny": \[web:1\] \- text \= "Today is a sunny day". \- "sunny" in text is True, so it runs the if block and skips both elif and else. \[web:1\]
+
+7\. Alert system example \- You wrote a small alert system using message and membership checks: \[web:1\] \- message \= "System warning: low battery". \- if "error" in message: print("Send alert"). \- elif "warning" in message: print("Log warning"). \- else: print("All good"). \- Here: \- "error" in message → False. \- "warning" in message → True. \- So it prints "Log warning" and skips else. \[web:1\] \- When message \= "All systems normal": \[web:1\] \- "error" in message → False. \- "warning" in message → False. \- Both if and elif fail, so else runs and prints "All good". \[web:1\]
+
+8\. What you should be able to do now \- Use \`"substring" in string\` and \`"substring" not in string\` to test if text is present or missing. \[web:1\] \- Understand that membership checks are case-sensitive and must match exact characters. \[web:1\] \- Combine \`in\` / \`not in\` with \`if / elif / else\` to choose between different messages or actions based on what a string contains. \[web:1\]
